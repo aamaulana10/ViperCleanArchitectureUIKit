@@ -40,9 +40,7 @@ class HomePresenter: ObservableObject {
         }
       }, receiveValue: { data in
         self.trending = data
-        
-        print("data ", data)
-        
+    
         self.presenter?.getTrending(trending: self.trending)
         
       })

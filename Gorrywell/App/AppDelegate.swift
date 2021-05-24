@@ -17,20 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     -> Bool {
     
-    let mainStoryboard = UIStoryboard(name: "Home", bundle: nil)
+//    let mainTabbar = MainTabBarController()
     
-    if let vc = mainStoryboard.instantiateViewController(
-        withIdentifier: "HomeViewController") as? HomeViewController {
+    if let loginVc = StoryboardHelper.instantiateVC(.authStoryboard, "LoginViewController") as? LoginViewController {
       
-      let useCase = HomeInjection.init().provideHome()
+      let useCase = AuthInjection.init().provideAuth()
       
-      let presenter = HomePresenter(homeUseCase: useCase)
+      let presenter = LoginPresenter(authUseCase: useCase)
       
-      vc.presenter = presenter
+      loginVc.presenter = presenter
       
-      mainNavigationController = UINavigationController(rootViewController: vc)
+      mainNavigationController = UINavigationController(rootViewController: loginVc)
       mainNavigationController?.isNavigationBarHidden = true
     }
+    
+//    mainNavigationController = UINavigationController(rootViewController: mainTabbar)
+//    mainNavigationController?.isNavigationBarHidden = true
     
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.makeKeyAndVisible()

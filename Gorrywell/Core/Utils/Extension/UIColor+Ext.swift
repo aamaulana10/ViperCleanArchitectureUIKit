@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
   
   static let trendingSelected = UIColor(hexString: "#DFF6E3")
+  static let tabSelected      = UIColor(hexString: "#60D377")
 
 }
 
